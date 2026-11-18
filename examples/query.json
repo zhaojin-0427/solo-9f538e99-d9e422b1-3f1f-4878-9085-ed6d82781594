@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "points": [
+    {"point_id": "obs-inside", "lon": 1.0, "lat": 2.0},
+    {"point_id": "obs-shared-edge", "lon": 2.0, "lat": 2.0},
+    {"point_id": "obs-corner", "lon": 0.0, "lat": 0.0},
+    {"point_id": "obs-outside", "lon": 8.0, "lat": 8.0}
+  ]
+}

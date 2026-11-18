@@ -1,0 +1,17 @@
+services:
+  watershed-api:
+    build: .
+    image: watershed-grid-api:1.0.0
+    container_name: watershed-grid-api
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_PATH: /data/watershed.db
+      AREA_TOL_REL: "1e-9"
+      POINT_EPS_REL: "1e-9"
+    volumes:
+      - watershed-data:/data
+    restart: unless-stopped
+
+volumes:
+  watershed-data:

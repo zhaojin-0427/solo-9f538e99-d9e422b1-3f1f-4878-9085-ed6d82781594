@@ -1,0 +1,23 @@
+{
+  "expected_version": 1,
+  "watershed": {
+    "type": "Polygon",
+    "coordinates": [[[0, 0], [4, 0], [4, 4], [0, 4], [0, 0]]]
+  },
+  "grids": [
+    {
+      "grid_id": "B",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[0, 0], [4, 0], [4, 2], [0, 2], [0, 0]]]
+      }
+    },
+    {
+      "grid_id": "T",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[0, 2], [4, 2], [4, 4], [0, 4], [0, 2]]]
+      }
+    }
+  ]
+}
