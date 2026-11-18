@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "k": 2,
+  "points": [
+    {"point_id": "risk-001", "lon": 0.5, "lat": 1.0},
+    {"point_id": "risk-002", "lon": 1.0, "lat": 2.0},
+    {"point_id": "risk-003", "lon": 0.5, "lat": 3.0},
+    {"point_id": "risk-004", "lon": 3.0, "lat": 1.0},
+    {"point_id": "risk-005", "lon": 2.0, "lat": 2.0},
+    {"point_id": "risk-006", "lon": 9.0, "lat": 9.0}
+  ]
+}

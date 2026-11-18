@@ -81,3 +81,43 @@ class VersionInfo(BaseModel):
     expected_version: int | None
     published_at: str
     grid_count: int
+
+
+# ---------- 脱敏汇总 ----------
+
+
+class SummaryPoint(BaseModel):
+    point_id: str = Field(
+        ..., min_length=1, max_length=128, description="险情点编号，必填且同次请求内唯一"
+    )
+    lon: float = Field(..., allow_inf_nan=False, description="经度，必须为有限数值")
+    lat: float = Field(..., allow_inf_nan=False, description="纬度，必须为有限数值")
+
+
+class SummaryRequest(BaseModel):
+    version: int | None = Field(
+        None, ge=1, description="已发布网格版号；不传或传 null 表示固定当前版"
+    )
+    k: int = Field(..., ge=2, le=5, description="匿名阈值：每个发布区至少包含 k 个险情点")
+    points: list[SummaryPoint] = Field(
+        ..., min_length=1, max_length=30, description="1~30 个险情点，编号唯一且坐标有限"
+    )
+
+
+class SummaryRegion(BaseModel):
+    grid_ids: list[str] = Field(..., description="发布区包含的网格编号（字典序）")
+    geometry: dict[str, Any] = Field(..., description="发布区合并后的 GeoJSON geometry")
+    point_count: int = Field(..., description="该发布区公布的险情点数（>= k）")
+
+
+class SummaryResponse(BaseModel):
+    version: int = Field(..., description="本次汇总实际使用的版号")
+    is_current: bool = Field(..., description="本次使用的版号是否为当前版")
+    k: int
+    regions: list[SummaryRegion] = Field(
+        ..., description="合格发布区列表；无合格区时为空数组"
+    )
+    unpublished_total: int = Field(
+        ...,
+        description="未公布险情点总数：边界点、域外点与未发布格内点数之和（不披露单格计数）",
+    )
